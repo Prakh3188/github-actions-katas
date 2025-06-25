@@ -75,6 +75,25 @@ jobs:
 ```
 </details>
 
+### **Belangrijk: Versies van Actions Vastzetten**
+
+Wanneer je GitHub Actions gebruikt, is het een best practice om specifieke versies van acties vast te pinnen (bijvoorbeeld `actions/checkout@v4`). Dit voorkomt dat een nieuwe (major) versie van een Action je build onverwachts breekt. Hoewel het gebruik van een major versie (zoals `@v4`) je wel patch-updates laat ontvangen die bugfixes kunnen bevatten, beschermt het je tegen brekende wijzigingen die in een nieuwe major versie (bijv. `@v5`) geïntroduceerd kunnen worden.
+
+Je kunt ook commentaar toevoegen in je YAML-workflowbestanden om dit te verduidelijken:
+
+```yaml
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # We gebruiken @v4 om stabiel te blijven en patch-updates te ontvangen,
+      # maar niet automatisch naar @v5 te gaan om brekende wijzigingen te voorkomen.
+      - uses: actions/checkout@v4
+
+      - name: Run a one-line script
+        run: echo Hello from Octo Organization
+```
+
 ---
 ## Using the Starter Workflow
 
